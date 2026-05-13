@@ -25,7 +25,7 @@ export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
 
     // Explicitly define terminate to avoid inheritance issues in some environments
     public terminate(): void {
-        super.terminate();
+        (this as any).terminate();
     }
 
     // Incremental sequence ID for messages, goes up for each heartbeat sent, starts at 1
@@ -58,7 +58,7 @@ export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
     }
 
     public get open(): boolean {
-        return this.readyState === WsWebSocket.OPEN;
+        return (this as any).readyState === WsWebSocket.OPEN;
     }
 
     /**
@@ -68,7 +68,7 @@ export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
      */
     public sendBytes(data: Uint8Array): boolean {
         if (this.open) {
-            super.send(Buffer.from(data));
+            (this as any).send(Buffer.from(data));
             return true;
         }
         return false;
