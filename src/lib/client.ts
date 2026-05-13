@@ -308,7 +308,7 @@ export class TikTokLiveConnection extends (EventEmitter as new () => TypedEventE
      */
     async disconnect(): Promise<void> {
         if (this.isConnected) {
-            this.wsClient?.close();
+            this.wsClient?.terminate();
         }
     }
 
