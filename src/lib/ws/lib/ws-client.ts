@@ -10,7 +10,9 @@ import { ClientOptions, WebSocket as WsWebSocket } from 'ws';
 const textEncoder = new TextEncoder();
 
 type EventMap = {
-    close: () => void;
+    open: () => void;
+    error: (error: Error) => void;
+    close: (code: number, reason: Buffer) => void;
     messageDecodingFailed: (error: Error) => void;
     protoMessageFetchResult: (response: any) => void;
     webSocketData: (data: Buffer) => void;

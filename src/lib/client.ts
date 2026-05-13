@@ -297,9 +297,9 @@ export class TikTokLiveConnection extends (EventEmitter as new () => TypedEventE
         this.wsClient = await this.setupWebsocket(protoMessageFetchResult.wsUrl, wsParams);
 
         // Default app behaviour is to send the im_enter_room message on WebSocket connect
-        this.wsClient.switchRooms(this.roomId);
+        (this.wsClient as any).switchRooms(this.roomId);
 
-        this.emit(ControlEvent.WEBSOCKET_CONNECTED, this.wsClient);
+        this.emit(ControlEvent.WEBSOCKET_CONNECTED, this.wsClient as any);
 
     }
 
@@ -522,21 +522,21 @@ export class TikTokLiveConnection extends (EventEmitter as new () => TypedEventE
             );
 
             // Handle the connection
-            wsClient.on('open', () => {
+            (wsClient as any).on('open', () => {
                 clearTimeout(connectTimeout);
-                wsClient.on('error', (e: any) => this.handleError(e, 'WebSocket Error'));
-                wsClient.on('close', (code, reason) => {
+                (wsClient as any).on('error', (e: any) => this.handleError(e, 'WebSocket Error'));
+                (wsClient as any).on('close', (code: any, reason: any) => {
                     this.setDisconnected();
                     this.emit(ControlEvent.DISCONNECTED, { code, reason: reason?.toString() });
                 });
                 resolve(wsClient);
             });
 
-            wsClient.on('error', (err: any) => reject(`Websocket connection failed, ${err}`));
-            wsClient.on('protoMessageFetchResult', this.processProtoMessageFetchResult.bind(this));
-            wsClient.on('imEnteredRoom', (data: DecodedWebcastPushFrame) => this.emit(ControlEvent.ENTER_ROOM, data));
-            wsClient.on('webSocketData', (data: Uint8Array) => this.emit(ControlEvent.WEBSOCKET_DATA, data));
-            wsClient.on('messageDecodingFailed', (err: any) => this.handleError(err, 'Websocket message decoding failed'));
+            (wsClient as any).on('error', (err: any) => reject(`Websocket connection failed, ${err}`));
+            (wsClient as any).on('protoMessageFetchResult', this.processProtoMessageFetchResult.bind(this));
+            (wsClient as any).on('imEnteredRoom', (data: DecodedWebcastPushFrame) => this.emit(ControlEvent.ENTER_ROOM, data));
+            (wsClient as any).on('webSocketData', (data: Uint8Array) => this.emit(ControlEvent.WEBSOCKET_DATA, data));
+            (wsClient as any).on('messageDecodingFailed', (err: any) => this.handleError(err, 'Websocket message decoding failed'));
             const connectTimeout = setTimeout(() => reject('Websocket not responding'), 20_000);
         });
     }
