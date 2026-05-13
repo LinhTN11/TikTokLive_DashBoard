@@ -1,0 +1,27 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "es2024"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "plugins": [{ "name": "next" }],
+    "rootDir": "../..",
+    "paths": {
+      "@/*": ["../../src/*"],
+      "@overlay/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../src/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -2,7 +2,7 @@ import { URL } from 'url';
 import { PremiumFeatureError, SignatureMissingTokensError } from '@/types/errors';
 import EulerStreamApiClient, { ClientConfiguration, SignWebcastUrl200Response } from '@eulerstream/euler-api-sdk';
 import { SignTikTokUrlBodyMethodEnum } from '@eulerstream/euler-api-sdk/dist/sdk/api';
-import { SignConfig } from '@/lib';
+import { SignConfig } from '@/lib/config';
 
 
 /**

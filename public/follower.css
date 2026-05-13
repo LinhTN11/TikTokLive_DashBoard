@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    font-family: 'Cinzel', serif;
+    /* Scale down for preview if needed, or keeping it 1:1 for OBS.
+       User can scale source in OBS. For browser viewing, it might scroll.
+       Let's add a wrapper to center/scale if desired, but 1:1 is safest for 1080p canvas. */
+}
+
+#notification-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1920px;
+    height: 1080px;
+    pointer-events: none;
+    opacity: 0;
+    /* Center and Scale Down the entire composition */
+    transform: translate(-50%, -50%) scale(0.22);
+    transform-origin: center center;
+}
+
+.asset {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 
+   ASSET MAPPING & POSITIONING:
+   All assets (1-5) use 'contain' and are centered by default.
+   ADJUST MARGINS TO MOVE ELEMENTS FROM CENTER.
+   - margin-left: Positive = Right, Negative = Left
+   - margin-top: Positive = Down, Negative = Up
+*/
+
+/* Layer 1: BG Panel (5.png) - Center Base */
+#bg-panel {
+    z-index: 1;
+    background-image: url('/gift_noti/Follower/5.png');
+    /* No margin needed, stays in center */
+}
+
+/* Layer 2: Cloud (4.png) - Bottom Left */
+#cloud-ornament {
+    z-index: 3;
+    background-image: url('/gift_noti/Follower/4.png');
+    /* ADJUST POSITION HERE: */
+    margin-top: 110px;
+    /* Vertical: Increase to move down */
+    margin-left: 640px;
+    /* Horizontal: Decrease (more negative) to move left */
+    transform: scale(0.3);
+    /* ADJUST SIZE: 0.5 for half size */
+}
+
+/* Layer 3: Top-Right (2.png) */
+#tr-ornament {
+    z-index: 2;
+    background-image: url('/gift_noti/Follower/2.png');
+    /* ADJUST POSITION HERE: */
+    margin-top: -58px;
+    /* Vertical: Decrease (more negative) to move up */
+    margin-left: 550px;
+    /* Horizontal: Increase to move right */
+    transform: scale(0.5);
+    /* ADJUST SIZE: 0.5 for half size (Image 3) */
+}
+
+/* Layer 4: Star (3.png) - Top Center */
+#star-ornament {
+    z-index: 4;
+    background-image: url('/gift_noti/Follower/3.png');
+    /* ADJUST POSITION HERE: */
+    margin-top: -160px;
+    /* Vertical position */
+}
+
+/* Layer 5: Character (1.png) - Left
+   2048x1024 - Needs specific positioning */
+#character-art {
+    z-index: 5;
+    background-image: url('/gift_noti/Follower/1.png');
+    /* ADJUST POSITION HERE: */
+    margin-left: -470px;
+    /* Horizontal position */
+    margin-top: 0px;
+    /* Vertical position */
+    transform: scale(0.5);
+    /* ADJUST SIZE: Change 0.85 to resize character */
+}
+
+#text-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: 6;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    /* Offset text slightly to right */
+    padding-left: 600px;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+#username {
+    font-size: 72px;
+    font-weight: 700;
+    color: #fcebd5;
+    display: block;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+#action-text {
+    font-size: 36px;
+    color: #b8a58e;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+}
+

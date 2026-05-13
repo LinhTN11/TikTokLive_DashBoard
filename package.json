@@ -10,8 +10,18 @@
     "engines": {
         "node": ">=20.0.0"
     },
+    "workspaces": [
+        "apps/live-overlay"
+    ],
     "scripts": {
-        "build": "tsx update-version.ts && npm run build:copy-package && tsc && tsc-alias",
+        "start": "npm run start:live",
+        "dev:live": "npm --workspace @tiktok-live-connector/live-overlay run dev",
+        "build": "tsx update-version.ts && npm run build:copy-package && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+        "build:live": "npm --workspace @tiktok-live-connector/live-overlay run build",
+        "start:live": "npm --workspace @tiktok-live-connector/live-overlay run start",
+        "typecheck:live": "npm --workspace @tiktok-live-connector/live-overlay run typecheck",
+        "db:live:check": "node scripts/check-live-overlay-migrations.mjs && node scripts/check-live-overlay-domain.mjs",
+        "db:live:apply": "node scripts/apply-live-overlay-schema.mjs",
         "build:copy-package": "cpx package.json dist && cpx LICENSE dist"
     },
     "repository": {
@@ -50,23 +60,17 @@
         "@eulerstream/euler-api-sdk": "0.2.0-beta1",
         "axios": "^1.12.2",
         "callable-instance": "^2.0.0",
-        "protobufjs": "^6.11.2",
         "typed-emitter": "^2.1.0",
         "ws": "^8.18.2"
     },
     "devDependencies": {
-        "@babel/cli": "^7.17.0",
-        "@babel/core": "^7.17.2",
-        "@babel/preset-env": "^7.16.11",
         "@types/node": "^22.15.3",
         "@types/ws": "^8.18.1",
         "cpx": "^1.5.0",
-        "cycletls": "^2.0.5",
-        "dotenv": "^16.5.0",
-        "https-proxy-agent": "^7.0.6",
         "prettier": "2.5.1",
         "ts-proto": "^2.6.1",
         "tsc-alias": "^1.8.15",
-        "typescript": "^4.8.2"
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3"
     }
 }

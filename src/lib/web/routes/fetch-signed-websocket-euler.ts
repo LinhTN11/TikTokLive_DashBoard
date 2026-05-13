@@ -9,7 +9,7 @@ import {
     SignatureRateLimitError
 } from '@/types/errors';
 import Config from '@/lib/config';
-import { deserializeMessage } from '@/lib';
+import { deserializeMessage } from '@/lib/utilities';
 import { FetchSignedWebSocketParams } from '@/types/client';
 import { ProtoMessageFetchResult } from '@/types';
 import { WebcastFetchPlatform } from '@eulerstream/euler-api-sdk';

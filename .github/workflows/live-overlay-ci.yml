@@ -1,0 +1,35 @@
+name: Live Overlay CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck:live
+
+      - name: Migration check
+        run: npm run db:live:check
+
+      - name: Build Next app
+        run: npm run build:live
+
+      - name: Build Docker image
+        run: docker build -t tiktok-live-overlay .

@@ -1,5 +1,5 @@
 import CallableInstance from 'callable-instance';
-import { TikTokWebClient } from '@/lib';
+import { TikTokWebClient } from '@/lib/web';
 
 export abstract class Route<Args, Response> extends CallableInstance<[Args], Promise<Response>> {
 

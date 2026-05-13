@@ -4,7 +4,7 @@ import CookieJar from '@/lib/web/lib/cookie-jar';
 import { WebcastHttpClientConfig, WebcastHttpClientRequestParams, WebcastMessage } from '@/types/client';
 import Config from '@/lib/config';
 import { SignTikTokUrlBodyMethodEnum } from '@eulerstream/euler-api-sdk/dist/sdk/api';
-import { EulerSigner } from '@/lib';
+import { EulerSigner } from '@/lib/web/lib/tiktok-signer';
 
 
 export default class WebcastHttpClient {

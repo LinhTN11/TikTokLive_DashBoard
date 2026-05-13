@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Merriweather:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+body {
+    background-color: transparent;
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gift-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gift-card {
+    position: relative;
+    width: 600px;
+    /* Wider for the landscape background */
+    height: 350px;
+    background-image: url('gift_noti/background.png');
+    background-size: cover;
+    /* or contain, depending on image aspect ratio */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* border: 4px solid #C0392B; Remove border if background has it */
+    border-radius: 0;
+    /* Removed border radius */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+
+    /* Animation */
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    animation: appear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Header: "Chúc mừng năm mới" */
+.main-headline {
+    font-family: 'Dancing Script', cursive;
+    /* Calligraphy style */
+    font-size: 3em;
+    /* Increased size for script font */
+    font-weight: 700;
+    color: #2C3E50;
+    /* Dark Blue/Black */
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+    margin-top: 60px;
+    /* Moved down significantly */
+    margin-bottom: 5px;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Sub-header: Banner for User info */
+/* Sub-header: Banner for User info */
+/* Sub-header: Banner for User info */
+/* Sub-header: Banner for User info */
+.sub-headline {
+    width: 580px;
+    /* Adjusted width */
+    height: 330px;
+    /* 16:9 Aspect Ratio based on 1920x1080 */
+    background-image: url('gift_noti/background_2.png');
+    background-size: contain;
+    /* Keep original ratio */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border-radius: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    z-index: 2;
+    box-shadow: none;
+    padding: 0 80px;
+    /* Adjust padding */
+    box-sizing: border-box;
+    margin-top: -160px;
+    /* Pull up to overlap slightly */
+}
+
+/* Avatar removed */
+
+.user-text {
+    font-family: 'Merriweather', serif;
+    font-size: 1 em;
+    /* Slightly larger */
+    font-weight: 700;
+    color: #FFF8E1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(7px);
+}
+
+.coin-count {
+    color: #FFD700;
+    font-weight: 900;
+    margin-left: 5px;
+}
+
+.coin-icon {
+    height: 40px;
+    width: auto;
+    vertical-align: middle;
+    margin-left: 2px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Character Container at bottom */
+.char-container {
+    position: absolute;
+    bottom: 57px;
+    /* Lowered significantly to avoid overlap */
+    left: 0;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 3;
+    pointer-events: none;
+
+}
+
+.char-img {
+    height: 110px;
+    width: auto;
+    object-fit: contain;
+    /* Create SOLID white 'sticker' border effect using multiple drop-shadows with 0px blur */
+    filter: drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white) drop-shadow(2px 2px 0 white) drop-shadow(-2px -2px 0 white) drop-shadow(2px -2px 0 white) drop-shadow(-2px 2px 0 white);
+    transition: transform 0.3s ease;
+    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    margin: 0 -15px;
+    transform-origin: bottom center;
+}
+
+@keyframes appear {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    from {
+        transform: translateY(100px) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    animation: disappear 0.8s ease-in forwards;
+}
+
+@keyframes disappear {
+    to {
+        opacity: 0;
+        transform: scale(1.1);
+        filter: blur(5px);
+    }
+}
