@@ -5,7 +5,7 @@ import Config from '@/lib/config';
 import TypedEventEmitter from 'typed-emitter';
 import CookieJar from '@/lib/web/lib/cookie-jar';
 import { HeartbeatMessage, WebcastImEnterRoomMessage } from '@/types';
-import { ClientOptions, WebSocket } from 'ws';
+import { ClientOptions, WebSocket as WsWebSocket } from 'ws';
 
 const textEncoder = new TextEncoder();
 
@@ -17,9 +17,9 @@ type EventMap = {
     imEnteredRoom: (decodedContainer: DecodedWebcastPushFrame) => void;
 };
 
-type TypedWebSocket = new (...args: any[]) => WebSocket & TypedEventEmitter<EventMap>;
+type TypedWebSocket = new (...args: any[]) => WsWebSocket & TypedEventEmitter<EventMap>;
 
-export default class TikTokWsClient extends (WebSocket as TypedWebSocket) {
+export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
     protected pingInterval: NodeJS.Timeout | null;
 
     // Incremental sequence ID for messages, goes up for each heartbeat sent, starts at 1
@@ -52,7 +52,7 @@ export default class TikTokWsClient extends (WebSocket as TypedWebSocket) {
     }
 
     public get open(): boolean {
-        return this.readyState === WebSocket.OPEN;
+        return this.readyState === WsWebSocket.OPEN;
     }
 
     /**
