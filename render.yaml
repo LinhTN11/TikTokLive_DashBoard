@@ -4,8 +4,7 @@ services:
     runtime: node
     plan: free
     buildCommand: npm ci && npm run db:live:check && npm run build:live
-    preDeployCommand: npm run db:live:apply
-    startCommand: npm run start:live
+    startCommand: npm run db:live:apply && npm run start:live
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
