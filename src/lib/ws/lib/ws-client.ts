@@ -53,8 +53,8 @@ export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
         );
 
         this.pingInterval = null;
-        this.on('message', this.onMessage.bind(this));
-        this.on('close', this.onDisconnect.bind(this));
+        (this as any).on('message', this.onMessage.bind(this));
+        (this as any).on('close', this.onDisconnect.bind(this));
     }
 
     public get open(): boolean {
@@ -88,7 +88,7 @@ export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
     protected async onMessage(message: Buffer) {
 
         // Emit WebSocket data
-        this.emit('webSocketData', message);
+        (this as any).emit('webSocketData', message);
 
         //  If the message is binary, decode it
         try {
@@ -102,16 +102,16 @@ export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
                     this.sendAck(decodedContainer);
                 }
 
-                this.emit('protoMessageFetchResult', decodedContainer.protoMessageFetchResult);
+                (this as any).emit('protoMessageFetchResult', decodedContainer.protoMessageFetchResult);
             }
 
             // If it's a room enter, emit
             if (decodedContainer.payloadType === 'im_enter_room_resp') {
-                this.emit('imEnteredRoom', decodedContainer);
+                (this as any).emit('imEnteredRoom', decodedContainer);
             }
 
         } catch (err) {
-            this.emit('messageDecodingFailed', err);
+            (this as any).emit('messageDecodingFailed', err);
         }
 
     }
