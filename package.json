@@ -61,6 +61,8 @@
         "axios": "^1.12.2",
         "callable-instance": "^2.0.0",
         "typed-emitter": "^2.1.0",
+        "typescript": "^5.9.3",
+        "tsx": "^4.21.0",
         "ws": "^8.18.2"
     },
     "devDependencies": {
@@ -69,8 +71,6 @@
         "cpx": "^1.5.0",
         "prettier": "2.5.1",
         "ts-proto": "^2.6.1",
-        "tsc-alias": "^1.8.15",
-        "tsx": "^4.21.0",
-        "typescript": "^5.9.3"
+        "tsc-alias": "^1.8.15"
     }
 }
