@@ -16,11 +16,15 @@ type EventMap = {
     webSocketData: (data: Buffer) => void;
     imEnteredRoom: (decodedContainer: DecodedWebcastPushFrame) => void;
 };
-
 type TypedWebSocket = new (...args: any[]) => WsWebSocket & TypedEventEmitter<EventMap>;
 
 export default class TikTokWsClient extends (WsWebSocket as TypedWebSocket) {
     protected pingInterval: NodeJS.Timeout | null;
+
+    // Explicitly define terminate to avoid inheritance issues in some environments
+    public terminate(): void {
+        super.terminate();
+    }
 
     // Incremental sequence ID for messages, goes up for each heartbeat sent, starts at 1
     // Important for mobile compatibility
