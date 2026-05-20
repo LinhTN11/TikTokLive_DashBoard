@@ -1509,3 +1509,24 @@ a {
     display: grid;
   }
 }
+
+/* Force hide Next.js dev indicators, logos and loaders */
+next-route-announcer, 
+#__next-build-watcher, 
+[data-nextjs-toast-wrapper], 
+.nextjs-static-indicator-base,
+#nextjs-dev-indicator,
+.nextjs-portal,
+[data-nextjs-indicator],
+[data-nextjs-hide-on-error],
+img[src*="next.svg"],
+svg[class*="Next"],
+div[class*="nextjs-static-indicator"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+}
+
+

@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { DevIndicatorRemover } from '../src/components/DevIndicatorRemover';
 
 export const metadata: Metadata = {
   title: 'TikTok Live Overlay',
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body style={{ position: 'relative' }}>
+        {children}
+        <DevIndicatorRemover />
+      </body>
     </html>
   );
 }
